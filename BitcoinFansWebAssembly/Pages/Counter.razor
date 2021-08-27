@@ -1,4 +1,6 @@
 ﻿@page "/counter"
+@inject HttpClient HttpClient
+@using BitcoinFansWebAssembly.Data
 
 <h1>Counter</h1>
 
@@ -13,5 +15,16 @@
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var data = await HttpClient.GetFromJsonAsync<PublicTreasury>("https://api.coingecko.com/api/v3/companies/public_treasury/bitcoin");
+
+        int result = 0;
+        foreach (var item in data.companies)
+        {
+            result += item.total_holdings;
+        }
     }
 }
