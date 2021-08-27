@@ -1,0 +1,10 @@
+﻿<RadzenDropDown TValue="string" Style="width:300px" Data=@multipleValues @bind-Value=value Change="OnChange"/>
+
+@code {
+    IEnumerable<string> multipleValues = new string[] { "USD", "EUR", "SEK" };
+    string value = "USD";
+
+    void OnChange()
+    {
+    }
+}
