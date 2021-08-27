@@ -1,8 +1,4 @@
 ﻿@page "/counter"
-@inject HttpClient HttpClient
-@using BitcoinFansWebAssembly.Data
-
-
 
 <h1>Counter</h1>
 
@@ -12,21 +8,10 @@
 
 
 @code {
-
     private int currentCount = 0;
-    HttpClient client = new HttpClient();
 
     private void IncrementCount()
     {
-
-        GetJson();
-
         currentCount++;
     }
-
-    public async Task GetJson()
-    {
-        var dd = await HttpClient.GetFromJsonAsync<PriceObject>("https://api.coingecko.com/api/v3/simple/price?ids=vechain%2Cbitcoin%2Cethereum&vs_currencies=usd%2Csek");
-    }
-
 }

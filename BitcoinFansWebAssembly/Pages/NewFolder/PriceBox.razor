@@ -1,0 +1,14 @@
+﻿@inject HttpClient HttpClient
+@using BitcoinFansWebAssembly.Data
+
+<h3>PriceBox</h3>
+
+@code {
+    [ParameterAttribute]
+    public string currency { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var dd = await HttpClient.GetFromJsonAsync<PriceObject>("https://api.coingecko.com/api/v3/simple/price?ids=vechain%2Cbitcoin%2Cethereum&vs_currencies=usd%2Csek");
+    }
+}
